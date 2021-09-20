@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ES2020",
+        "allowJs": true,
+        "lib": [
+            "ES2020",
+            "DOM",
+        ],
+    },
+    "include": [
+        "src/**/*.ts", "src/nav.js",
+    ],
+}

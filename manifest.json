@@ -1,0 +1,32 @@
+{
+    "name": "Make Do with zhihu 2",
+    "manifest_version": 2,
+    "background": {
+        "scripts": [
+            "src/background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.zhihu.com/*",
+                "https://zhuanlan.zhihu.com/*"
+            ],
+            "js": [
+                "src/import-content.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "permissions": [
+        "storage",
+        "webRequest",
+        "declarativeNetRequest",
+        "https://www.zhihu.com/*",
+        "https://zhuanlan.zhihu.com/*"
+    ],
+    "web_accessible_resources": [
+        "src/content.js"
+    ],
+    "$schema": "https://raw.githubusercontent.com/extend-chrome/rollup-plugin-chrome-extension/main/manifest.schema.json"
+}
