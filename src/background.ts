@@ -1,22 +1,27 @@
 import nav from './nav'
 
-/** @deprecated blocking的Api在V3中用不了... */
-function deprecated() {
+/** 需要`webRequestBlocking`权限 */
+function v2() {
     chrome.webRequest.onBeforeSendHeaders.addListener(
-        (details) => {
-            debugger
-            return {
-                requestHeaders: details.requestHeaders
+        ({ requestHeaders }) => {
+            if (requestHeaders) {
+                for (let header of requestHeaders) {
+                    if (header.name === 'User-Agent' || header.name === 'user-agent') {
+                        header.value = nav.userAgent
+                        return { requestHeaders }
+                    }
+                }
             }
+            return {}
         },
-        { urls: ['<all_urls>'] },
+        { urls: ['<all_urls>'], types: ['main_frame'] },
         ['blocking', 'requestHeaders'],
     )
 }
 
-const c = chrome.declarativeNetRequest
-
-async function main() {
+/** 需要`declarativeNetRequest`权限  */
+async function v3() {
+    const c = chrome.declarativeNetRequest
     await c.updateDynamicRules({
         removeRuleIds: [1],
         addRules: [
@@ -42,4 +47,4 @@ async function main() {
     })
 }
 
-main()
+v2()

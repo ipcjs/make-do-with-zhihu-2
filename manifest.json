@@ -21,7 +21,7 @@
     "permissions": [
         "storage",
         "webRequest",
-        "declarativeNetRequest",
+        "webRequestBlocking",
         "https://www.zhihu.com/*",
         "https://zhuanlan.zhihu.com/*"
     ],
