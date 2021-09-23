@@ -22,11 +22,28 @@ const output_dir = 'dist'
 // fs.rmSync(output_dir, { recursive: true, force: true })
 const output_src = { dir: `${output_dir}/src`, format: 'es' }
 
+const copy_targets = [
+    { src: 'src/import-content.js', dest: output_src.dir },
+    {
+        src: 'manifest.json',
+        dest: output_dir,
+        transform: (contents, name) => {
+            const manifest = JSON.parse(contents.toString())
+            // manifest.name = packageObj.name
+            manifest.description = packageObj.description
+            manifest.version = packageObj.version
+            return JSON.stringify(manifest, undefined, 4)
+        },
+    }
+]
+
 export default [
     {
         input: 'src/background.ts',
         output: output_src,
-        plugins: plugins,
+        plugins: [
+            ...plugins,
+        ],
     },
     {
         input: 'src/content.ts',
@@ -34,22 +51,14 @@ export default [
         plugins: [
             ...plugins,
             copy({
-                targets: [
-                    { src: 'src/import-content.js', dest: output_src.dir },
-                    {
-                        src: 'manifest.json',
-                        dest: output_dir,
-                        transform: (contents, name) => {
-                            const manifest = JSON.parse(contents.toString())
-                            // manifest.name = packageObj.name
-                            manifest.description = packageObj.description
-                            manifest.version = packageObj.version
-                            delete manifest.$schema
-                            return JSON.stringify(manifest, undefined, 4)
-                        },
-                    }
-                ]
-            })
+                targets: copy_targets
+            }),
+            {
+                name: 'watch-files',
+                buildStart() {
+                    copy_targets.forEach(it => this.addWatchFile(it.src))
+                }
+            }
         ],
     },
 ]

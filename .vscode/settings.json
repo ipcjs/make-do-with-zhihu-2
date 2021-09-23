@@ -1,0 +1,8 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": ["manifest.json"],
+            "url": "https://raw.githubusercontent.com/extend-chrome/rollup-plugin-chrome-extension/main/manifest.schema.json"
+        }
+    ]
+}
