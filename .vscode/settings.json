@@ -4,5 +4,17 @@
             "fileMatch": ["manifest.json"],
             "url": "https://raw.githubusercontent.com/extend-chrome/rollup-plugin-chrome-extension/main/manifest.schema.json"
         }
-    ]
+    ],
+    "markdownlint.config": {
+		"MD033": {
+			"allowed_elements": [
+				"br",
+				"pre",
+				"style",
+				"div",
+				"details",
+				"summary",
+			]
+		}
+	},
 }

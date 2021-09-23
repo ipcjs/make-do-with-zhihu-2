@@ -27,6 +27,5 @@
     ],
     "web_accessible_resources": [
         "src/content.js"
-    ],
-    "$schema": "https://raw.githubusercontent.com/extend-chrome/rollup-plugin-chrome-extension/main/manifest.schema.json"
+    ]
 }
