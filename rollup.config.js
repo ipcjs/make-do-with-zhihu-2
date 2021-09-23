@@ -12,7 +12,7 @@ const plugins = [
     // 生成的路径有问题，暂时不用
     // simpleReloader(),
     scss({
-        insert: true
+        output: false,
     }),
     typescript(),
     // emptyDir(),
