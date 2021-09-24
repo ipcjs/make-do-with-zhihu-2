@@ -13,6 +13,11 @@ function pack-to-crx() {
     "$CHROME" --pack-extension=$DIR --pack-extension-key=$KEY
     mv "$name.crx" $OUT_FILE
 }
+function build-script() {
+    cd modules || exit
+    npx rollup --config packages/zhihu_mobile_style/rollup.config.js
+    cd ..
+}
 
 rm -Rf $build_dirname
 npm run build
@@ -21,3 +26,5 @@ rm $output_filename.zip
 7z a $output_filename.zip $build_dirname
 
 pack-to-crx $build_dirname
+
+build-script
