@@ -4,7 +4,6 @@
   "description": "Make Do with zhihu 2",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -Rf dist",
     "build": "rollup -c",
     "dev": "rollup -c -w"
   },
