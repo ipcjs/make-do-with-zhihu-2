@@ -1,5 +1,6 @@
 {
     "name": "Make Do with zhihu 2",
+    "description": "知乎网页版适配移动端页面",
     "manifest_version": 2,
     "background": {
         "scripts": [
